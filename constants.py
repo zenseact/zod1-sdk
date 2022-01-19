@@ -1,7 +1,7 @@
 """Constants for dataset visualization kit."""
 
 # absolute path to data folder
-DATA_ROOT = "/Users/s0000317/staging/dataset_donation/round1_restructured/"
+DATA_ROOT = ""
 # name of the folder containing OxTS data in dataset for a single frame sequence
 OXTS_FOLDER = "oxts"
 # extension of file containing OxTS data
