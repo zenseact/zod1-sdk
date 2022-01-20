@@ -1,4 +1,5 @@
 # Zenseact Open Dataset Overview
+
 Zenseact Open dataset is a sequential multimodal dataset consisting of 6666 unique sequences, captured by Zenseacts’ development vehicles in real-world traffic scenarios on the highway, country, and urban roads in and around Warsaw, Poland, during a three-week timespan. The data were collected during the day and night under varying weather conditions.
 Each sequence is composed of three consecutive high-resolution (8MP) RGB camera images with 30 Hz frequency, in addition to the corresponding LiDAR, high-precision GPS (a.k.a OXTS), and the vehicle data sequences in the range [-1s, +1s] around the middle camera frame. Exhaustive annotations are provided for various autonomous driving tasks in [GeoJSON](https://geojson.org/) format for the middle frames of the sequences, allowing multi-task learning.
 
