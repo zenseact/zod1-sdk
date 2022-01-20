@@ -6,6 +6,8 @@ from datetime import datetime
 from typing import Type
 
 import numpy as np
+from pyquaternion import Quaternion
+
 import constants
 
 
@@ -158,7 +160,7 @@ def invert_3d_transform(transform):
 
 
 def get_3d_transform_camera_lidar(calib: dict):
-    """Get 3D transformation between lidar and camera."""
+    """Get 3D transformation from lidar to camera."""
     t_refframe_to_frame = calib[constants.LIDAR_EXTRINSICS]
     t_refframe_from_frame = calib[constants.EXTRINSICS]
 
@@ -166,6 +168,11 @@ def get_3d_transform_camera_lidar(calib: dict):
     t_from_frame_to_frame = t_from_frame_refframe @ t_refframe_to_frame
 
     return t_from_frame_to_frame
+
+
+def transform_rotation(rotation: Quaternion, transform: np.ndarray):
+    """Transform the rotation between two frames defined by the transformation."""
+    return Quaternion(matrix=transform[:3, :3].T) * rotation
 
 
 class CameraInfo(ABC):
