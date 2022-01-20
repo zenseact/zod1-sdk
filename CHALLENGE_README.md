@@ -4,7 +4,7 @@ Hi and welcome to the Edge AnnotationZ Challenge. We are very excited that you w
 # Dataset 
 For a full overview of the dataset, we refer to the description that can be found on AI-Swedens' website [here](https://www.ai.se/en/data-factory/datasets/data-factory-datasets/zenseact-open-dataset).
 
-## Folder structure and content
+### Folder structure and content
 In the dataset you can the following folders 
 - annotations - which contains the annotations in the Zenseact format.
 - annotations_kitti - which contains the dynamic objects annotations but translated into the KITTI format (find more information below)
@@ -48,21 +48,21 @@ The lidar detections provide only 3D properties. All 2D properties should theref
 
 The quality of the detections have been evaluated using the metrics defined in the `metrics` section below. The result of that evaluation (and how it was performed) can be found in the evaluation example in the [development-kit](https://github.com/zenseact/development_kit). 
 
-## Known issues 
+### Known issues 
  While **most** sequences contain 21 lidar point clouds in the `range_lidar_data` some sequences contains fewer. This is the case for 78 out of the total 6666 sequences. We know that this might be troublesome and thank you for your indulgence in this matter. 
 
 
 # Evaluation
 Here we intend to explain the metric used to evaluate the pseudo-annotations provided in the Edge Annotationz Challenge.
 
-## What you should provide
+### What you should provide
 Your solutions will be scored based on how good your psedo-annotations are. We want you to provide us with annotations for three (3) different classes. These classes are Vehicle, Cyclist, and Pedestrian. The pseudo-annotations you provide should follow the KITTI format, i.e., one psedo-annotation per row containing 
 
 `Class Name | Truncation (-1) | Occlusion (-1) | Alpha (-10) | Bbox left | Bbox top | Bbox right | Bbox bottom | height | width | length | x  | y | z | rotation_y | confidence score`
 
 Note that the height, width and length are in meters, that x, y & z are in the camera coordinate system, and that the columns marked with (-1/-10) can be left as -1/-10. 
 
-## Metrics
+### Metrics
 To evaluate your solutions we will use the metrics defined in the [KITTI 3D object detection](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d) challenge, with some slight modifications. We will assess your psedo-annotations by averaging both over the 2D AP, birds-eye-view (BEV) AP, and the 3D AP, but also over each of the classes defined. To clarify we will score your solution according to the following formula:
 
 $$
@@ -73,13 +73,13 @@ It is worth mentioning that in KITTI you are scored in 3 different difficulty ca
 
 Furthermore, the computation of 2D, BEV, and 3D AP is done independently, but we still want to to supply only one set of psedo-annoations per frame. To clarify, it is NOT OK to provide us with a set of 2D pseudo-annotations and another set of 3D pseudo-annotation. These shall all be in the same file as specified under the `What you should provide` section.
 
-## Framework for evaluation
+### Framework for evaluation
 To compute the metrics we will use [this forked repository](https://github.com/zenseact/kitti_native_evaluation) which we have modified slightly to suit our needs. To evaluate your performance you can clone that repository and follow the compilation stages found in the repos README. 
 
 We have also created a Dockerfile that you can use. This can be found under the `eval` folder in the complementary [development-kit](https://github.com/zenseact/development_kit). 
 
 
-## Filenames & Submission
+### Filenames & Submission
 The psudo-annotations you provide should all be gathered in to one folder with one .txt file per core-frame as described above. The filename should correspond to the frame index e.g., `dataset_root/submitted_pseudo_annotations/001337.txt`. 
 
 
