@@ -22,7 +22,7 @@ We welcome contributions to the data set or the development kit through pull req
 
 # License
 **Dataset**: This dataset is the property of Zenseact AB (© 2021 Zenseact AB), and is licensed under [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/). Any public use, distribution or display of this dataset must contain this entire notice:
-"For this dataset, Zenseact AB has taken all reasonable measures to remove all personal identifiable information, including faces and license plates. To the extent that you like to request removal of specific images from the dataset, please contact [privacy@zenseact.com]((mailto:privacy@zenseact.com))."
+"For this dataset, Zenseact AB has taken all reasonable measures to remove all personal identifiable information, including faces and license plates. To the extent that you like to request removal of specific images from the dataset, please contact [privacy@zenseact.com](mailto:privacy@zenseact.com).
 
 # Citation
 If you publish work that uses Zenseact Open Dataset, please cite: [coming soon]()
