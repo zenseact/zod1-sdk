@@ -24,6 +24,9 @@ We welcome contributions to the data set or the development kit through pull req
 **Dataset**: This dataset is the property of Zenseact AB (© 2021 Zenseact AB), and is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Any public use, distribution or display of this dataset must contain this entire notice:
 "For this dataset, Zenseact AB has taken all reasonable measures to remove all personal identifiable information, including faces and license plates. To the extent that you like to request removal of specific images from the dataset, please contact [privacy@zenseact.com](mailto:privacy@zenseact.com).
 
+**Development kit**: This development kit is the property of and/or licensed to Zenseact AB (© 2022 Zenseact AB), and is licensed only to the participants in and for use only with respect to work on the Edge Annotation Z Challenge (https://www.ai.se/en/events/edge-annotationz-challenge); this licensed is governed by Swedish law.
+Zenseact is looking into the possibilities to make the development kit available as open source and updates on this topic will be posted in due time, so stay tuned.
+
 # Citation
 If you publish work that uses Zenseact Open Dataset, please cite: [coming soon]()
 
