@@ -21,7 +21,7 @@ This [notebook](./devkit_tutorial.ipynb) introduces working with different data 
 We welcome contributions to the data set or the development kit through pull requests, following the license terms. Please open an issue first to discuss what you would like to modify or add for major changes.
 
 # License
-**Dataset**: This dataset is the property of Zenseact AB (© 2021 Zenseact AB), and is licensed under [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/). Any public use, distribution or display of this dataset must contain this entire notice:
+**Dataset**: This dataset is the property of Zenseact AB (© 2021 Zenseact AB), and is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Any public use, distribution or display of this dataset must contain this entire notice:
 "For this dataset, Zenseact AB has taken all reasonable measures to remove all personal identifiable information, including faces and license plates. To the extent that you like to request removal of specific images from the dataset, please contact [privacy@zenseact.com](mailto:privacy@zenseact.com).
 
 # Citation
