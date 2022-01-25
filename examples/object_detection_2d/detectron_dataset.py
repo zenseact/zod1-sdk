@@ -36,7 +36,7 @@ def _read_objs(path):
 
 def get_dataset_dicts(root_path: str, test: bool) -> List[dict]:
     # First construct a map from id to image path
-    datalist_path = os.path.join(root_path, 'annotations_kitti', ('test.json' if test else 'train.json'))
+    datalist_path = os.path.join(root_path, ('test.json' if test else 'train.json'))
     with open(datalist_path) as datalist_file:
         datalist = json.load(datalist_file)
     # Then read annotations and construct dataset dict
