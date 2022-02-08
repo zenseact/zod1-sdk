@@ -17,24 +17,24 @@ The easiest way to start with the dataset is to use the provided functionalites 
 To get started, clone this repository, and use python 3.8.
 Use the package manager [pip](https://pip.pypa.io/en/stable/#) to install the required packages listed in [requierment.txt](./requirements.txt).
 This [notebook](./devkit_tutorial.ipynb) introduces working with different data loaders, coordinate transformation, and visualization functionalities, and this [notebook](./dataset_analysis.ipynb) can be used to analyze the dataset, and get a more detailed overview of its characteristics.
+# License
+**Dataset**: This dataset is the property of Zenseact AB (© 2021 Zenseact AB), and is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Any public use, distribution or display of this dataset must contain this entire notice:
+"For this dataset, Zenseact AB has taken all reasonable measures to remove all personal identifiable information, including faces and license plates. To the extent that you like to request removal of specific images from the dataset, please contact [privacy@zenseact.com](mailto:privacy@zenseact.com)".
+
+**Development kit**: This development kit is the property of Zenseact AB (© 2022 Zenseact AB), and is licensed to under [MIT](https://opensource.org/licenses/MIT).
+
+# Download
+Zenseact Open dataset is about 3.4TB in total when completely downloaded and extracted. Data from different sensors are split and can be downloaded separately as zip file(s); see this [section](#dataset-structure) for more details.
+
+To download the Zenseact Open Dataset, please read the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) Terms of Use of the license, and send your application to [opendataset@zenseact.com](mailto:opendataset@zenseact.com). Please specify your name, institution/organization, and an email connected to dropbox, in addition to a short description of how the dataset will be used. Scripts and examples of how to use the dataset can be found in this GitHub repository and are licensed under the terms of [MIT](https://opensource.org/licenses/MIT).
+
+Moreover, the dataset is also available at AI Sweden Data Factory for all AI Sweden partners (see [this page](https://www.ai.se/en/data-factory/datasets/data-factory-datasets/zenseact-open-dataset)).
+
 # Contributing
 We welcome contributions to the data set or the development kit through pull requests, following the license terms. Please open an issue first to discuss what you would like to modify or add for major changes.
 
-# License
-**Dataset**: This dataset is the property of Zenseact AB (© 2021 Zenseact AB), and is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Any public use, distribution or display of this dataset must contain this entire notice:
-"For this dataset, Zenseact AB has taken all reasonable measures to remove all personal identifiable information, including faces and license plates. To the extent that you like to request removal of specific images from the dataset, please contact [privacy@zenseact.com](mailto:privacy@zenseact.com).
-
-**Development kit**: This development kit is the property of and/or licensed to Zenseact AB (© 2022 Zenseact AB), and is licensed only to the participants in and for use only with respect to work on the Edge Annotation Z Challenge (https://www.ai.se/en/events/edge-annotationz-challenge); this licensed is governed by Swedish law.
-Zenseact is looking into the possibilities to make the development kit available as open source and updates on this topic will be posted in due time, so stay tuned.
-
 # Citation
 If you publish work that uses Zenseact Open Dataset, please cite: [coming soon]()
-
-# Download
-Zenseact Open dataset is about 3.4TB in total.
-Data from different sensors can be downloaded separately as zip files; see this [section](#dataset-structure) for more details.
-
-Zenseact Open Dataset is already available for all AI Sweden partners (see [this page](https://www.ai.se/en/data-factory/datasets/data-factory-datasets/zenseact-open-dataset)), but it can also be downloaded by public from [here]() soon.
 
 # Team
 The Zenseact Open dataset is led by Mina Alibeigi. It is made possible by Daria Motorniuk, Oleksandr Panasenko, Jakub Bochynski, Dónal Scanlan, and Benny Nilsson. Special thanks to Jenny Widahl, Jonas Ekmark, Bolin Shao, Erik Rosén, and Erik Coelingh for their support, comments, and suggestions.
