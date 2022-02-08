@@ -1,4 +1,7 @@
 """Converts dynamic object annotations to KITTI format."""
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
+
 import argparse
 import glob
 import json
@@ -120,7 +123,7 @@ def _lidar_to_camera(objects, calib):
     return objects
 
 
-def convert_annotation(calib_path, src_anno_pth, target_path):
+def convert_annotation(calib_path, src_anno_pth, target_path, target_coordinate_system):
     with open(src_anno_pth) as anno_file:
         src_anno = json.load(anno_file)
     vehicle, camera_name, time_str, id_ = basename(src_anno_pth.strip(".json")).split("_")
@@ -128,20 +131,27 @@ def convert_annotation(calib_path, src_anno_pth, target_path):
     objects = ObjectAnnotationHandler.from_annotations(src_anno)
     objects = [obj[2] for obj in objects]
 
-    # Convert objects from LIDAR to camera using calibration information
-    frame_time = datetime.strptime(time_str, TIME_FORMAT)
-    calib = load_calib_from_json(calib_path, vehicle, frame_time, camera_name)
-    objects = _lidar_to_camera(objects, calib)
-    # Write a KITTI-style annotation with obj in camera frame
-    target_anno = _convert_to_kitti(objects, yaw_func=lambda rot: -rot.yaw_pitch_roll[0])
+    if target_coordinate_system == "kitti_camera": 
+        # Convert objects from LIDAR to camera using calibration information
+        frame_time = datetime.strptime(time_str, TIME_FORMAT)
+        calib = load_calib_from_json(calib_path, vehicle, frame_time, camera_name)
+        objects = _lidar_to_camera(objects, calib)
+        # Write a KITTI-style annotation with obj in camera frame
+        target_anno = _convert_to_kitti(objects, yaw_func=lambda rot: -rot.yaw_pitch_roll[0])
+    elif target_coordinate_system == "zenseact_lidar": 
+        # Write a KITTI-style annotation with obj still in the original frame
+        target_anno = _convert_to_kitti(objects, yaw_func=lambda rot: rot.yaw_pitch_roll[0])
+    else: 
+        raise ValueError("Unknown coordinate system " + target_coordinate_system)
     with open(join(target_path, f"{id_:06d}.txt"), "w") as target_file:
         target_file.write("\n".join(target_anno))
 
 
 def _parse_args():
     parser = argparse.ArgumentParser(description="Convert annotations to KITTI format")
-    parser.add_argument("--dataset-dir", required=True, help="Root dataset directory")
+    parser.add_argument("--dataset-dir", required=True, help="Root dataset directory. Assumed to contain json files with label-coordinates in the zenseact lidar coordinate system")
     parser.add_argument("--target-dir", required=True, help="Output directory")
+    parser.add_argument("--target_coordinate_system", required=True, help="What coordinate system to convert files to")
     return parser.parse_args()
 
 
@@ -149,6 +159,13 @@ def main():
     args = _parse_args()
     calib_path = join(args.dataset_dir, "calibration")
     source_path = join(args.dataset_dir, "annotations", "dynamic_objects")
+    
+    target_coordinate_system = args.target_coordinate_system
+    if target_coordinate_system not in ["zenseact_lidar", "kitti_camera"]: 
+        raise ValueError("Unknown coordinate system " + target_coordinate_system)
+        
+    print("WARNING: CONVERTING FROM ZENSEACT LIDAR COORDINATE FRAME TO", target_coordinate_system)
+    
     assert args.dataset_dir not in args.target_dir, "Do not write to the dataset"
 
     print("Looking up all source annotations...")
@@ -159,7 +176,7 @@ def main():
 
     for src_anno_pth in tqdm(source_anno_paths, desc="Converting annotations..."):
         try:
-            convert_annotation(calib_path, src_anno_pth, args.target_dir)
+            convert_annotation(calib_path, src_anno_pth, args.target_dir, target_coordinate_system)
         except Exception as err:
             print("Failed converting annotation: ", src_anno_pth, "with error:", str(err))
             raise
