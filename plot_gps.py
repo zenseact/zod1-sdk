@@ -1,13 +1,16 @@
 """Plot gps information."""
 
 from typing import List, Optional, Sequence
-
+import json
 import numpy as np
 import plotly.express as px
 
 from constants import (
+    BLUE_COLOR,
     DEFAULT_COLOR,
     DEFAULT_SIZE,
+    LATITUDE,
+    LONGITUDE,
     MAPS_STYLE,
     OPACITY_LEVEL,
     SIZE_MAX,
@@ -47,7 +50,7 @@ def plot_gps(
     sizes: Optional[List[int]] = None,
     show: bool = False,
 ):
-    """Plot gps coordinates on ḿap.
+    """Plot gps coordinates on map.
 
     Args:
         longs : gps points longitudes
@@ -75,3 +78,37 @@ def plot_gps(
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     if show:
         fig.show()
+
+
+def plot_gps_track_from_dataset_sequence(oxts_values: np.ndarray):
+    """Plot GPS track on the map from dataset sequence.
+
+    Args:
+        oxts_values : OxTS values
+
+    """
+    longs, lats = oxts_values[LONGITUDE], oxts_values[LATITUDE]
+    colors = [BLUE_COLOR] * len(longs)
+    sizes = [1] * len(longs)
+    plot_gps(longs, lats, colors, sizes, show=True)
+
+
+def show_gps_for_all_frames(filename: str):
+    """Show GPS points for all extracted frames in dataset.
+
+    Args:
+        filename: path to JSON file containing GPS coordinates for all frames in dataset
+
+    """
+    with open(filename) as opened:
+        content = json.load(opened)
+    lats, lons = [], []
+    vehicles = set()
+    for frame_id, points in content.items():
+        vehicles.add(frame_id.split("_")[0])
+        lons.append(points[0])
+        lats.append(points[1])
+    print(
+        f"Total frames in dataset: {len(content)}, vehicles: {vehicles}",
+    )
+    plot_gps(lons, lats, ["blue"] * len(lons), [1] * len(lons), show=True)

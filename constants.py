@@ -115,3 +115,16 @@ ANNOTATIONS = "annotations"
 ORIGINAL_IMAGES = "original_images"
 BLURRED_IMAGES = "blurred_images"
 DNAT_IMAGES = "dnat_images"
+
+# Dynamic Object classes for BEV visualization
+DO_CLASSES = ("Vehicle", "VulnerableVehicle", "Pedestrian", "Animal")
+# Static objects classes for BEV visualization
+SO_CLASSES = (
+    "TrafficSign",
+    "PoleObject",
+    "TrafficGuide",
+    "TrafficBeacon",
+    "TrafficSignal",
+    "DynamicBarrier",
+    "Inconclusive",
+)

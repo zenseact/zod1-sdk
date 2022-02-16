@@ -1,21 +1,15 @@
-"""Utils for data loading and visualization."""
+"""Utils for data loading."""
 import glob
-import json
 import os
 from collections import defaultdict
 from datetime import datetime, timedelta
 from typing import List
 
+import constants
 import cv2
 import h5py
 import numpy as np
-from matplotlib import pyplot as plt
-from plot_gps import plot_gps
 from pytz import utc
-import constants
-
-
-plt.rcParams["figure.figsize"] = [20, 10]
 
 
 def gps_time_to_datetime(gps_time, gps_time_unit=constants.MICROSECONDS):
@@ -120,7 +114,7 @@ def load_lidar_from_dataset(folder: str, index: int = 0) -> np.ndarray:
     """
     lidar_file = sorted(glob.glob(os.path.join(folder, constants.NPY_EXT)))[index]
     pointcloud = np.load(lidar_file, allow_pickle=True)
-    pointcloud = np.c_[pointcloud["x"], pointcloud["y"], pointcloud["z"]]
+    pointcloud = np.c_[pointcloud["x"], pointcloud["y"], pointcloud["z"], pointcloud["intensity"]]
     return pointcloud, lidar_file
 
 
@@ -138,37 +132,3 @@ def load_vehicle_data_from_dataset(folder: str) -> dict:
         for dataset in datasets:
             vehicle_data[dataset].append(_read_hdf5(vd_file, dataset))
     return vehicle_data
-
-
-def plot_gps_track_from_dataset_sequence(oxts_values: np.ndarray):
-    """Plot GPS track on the map from dataset sequence.
-
-    Args:
-        oxts_values : OxTS values
-
-    """
-    longs, lats = oxts_values[constants.LONGITUDE], oxts_values[constants.LATITUDE]
-    colors = [constants.BLUE_COLOR] * len(longs)
-    sizes = [1] * len(longs)
-    plot_gps(longs, lats, colors, sizes, show=True)
-
-
-def show_gps_for_all_frames(filename: str):
-    """Show GPS points for all extracted frames in dataset.
-
-    Args:
-        filename: path to JSON file containing GPS coordinates for all frames in dataset
-
-    """
-    with open(filename) as opened:
-        content = json.load(opened)
-    lats, lons = [], []
-    vehicles = set()
-    for frame_id, points in content.items():
-        vehicles.add(frame_id.split("_")[0])
-        lons.append(points[0])
-        lats.append(points[1])
-    print(
-        f"Total frames in dataset: {len(content)}, vehicles: {vehicles}",
-    )
-    plot_gps(lons, lats, ["blue"] * len(lons), [1] * len(lons), show=True)
