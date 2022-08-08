@@ -3,12 +3,12 @@
 Zenseact Open dataset is a sequential multimodal dataset consisting of 6666 unique sequences, captured by Zenseacts’ development vehicles in real-world traffic scenarios on the highway, country, and urban roads in and around Warsaw, Poland, during a three-week timespan. The data were collected during the day and night under varying weather conditions.
 Each sequence is composed of three consecutive high-resolution (8MP) RGB camera images with 30 Hz frequency, in addition to the corresponding LiDAR, high-precision GPS (a.k.a OXTS), and the vehicle data sequences in the range [-1s, +1s] around the middle camera frame. Exhaustive annotations are provided for various autonomous driving tasks in [GeoJSON](https://geojson.org/) format for the middle frames of the sequences, allowing multi-task learning.
 
-More information about the dataset can be found [here](https://www.ai.se/sites/default/files/content/bilder/zenseact_dataset_intro.pdf).
-
 ![DatasetOverviewTeaser](/assets/dataset_teaser.png)
 
 Faces and the vehicle license plates are anonymized using the [brighterAI](https://brighter.ai/) tools for GDPR compliance and the intent to preserve every identity on roads. There are two anonymized RGB images provided per frame: One with blurred faces and license plates and the other with faces and license plates replaced by Deep Natural Anonymization. The technique is based on generative AI and leads to a minimal pixel impact. Information like line of sight of pedestrians is maintained and the anonymization method supports machine learning use cases in the best possible way. Having two different anonymized images per frame enables the impact study of varying anonymization techniques on the performance of the machine learning models.
- 
+
+More information about the dataset can be found [here](https://www.ai.se/sites/default/files/content/bilder/zenseact_dataset_intro.pdf).
+
 # Dataset Structure
 The Zenseact Open dataset folder structure and the actual size of data in each folder is as follows.
 [<img src="/assets/dataset_structure_graphical_condense.jpeg" width="400"/>](image.png)
