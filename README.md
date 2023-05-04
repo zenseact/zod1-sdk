@@ -1,6 +1,6 @@
 # Zenseact Edge Annotationz Dataset
 
-**The Zenseact Open Dataset referred to here was used during the [Edge Annotationz challenge](https://www.ai.se/en/data-factory/edge-annotationz-challenge). For the large-scale ZOD, please see [https://zod.zenseact.com/](https://zod.zenseact.com/).**
+**The dataset referred to here was used during the [Edge Annotationz challenge](https://www.ai.se/en/data-factory/edge-annotationz-challenge). For the large-scale Zenseact Open Dataset, please see [https://zod.zenseact.com/](https://zod.zenseact.com/).**
 
 Zenseact Edge Annotationz Dataset is a sequential multimodal dataset consisting of 6666 unique sequences, captured by Zenseacts’ development vehicles in real-world traffic scenarios on the highway, country, and urban roads in and around Warsaw, Poland, during a three-week timespan. The data were collected during the day and night under varying weather conditions.
 Each sequence is composed of three consecutive high-resolution (8MP) RGB camera images with 30 Hz frequency, in addition to the corresponding LiDAR, high-precision GPS (a.k.a OXTS), and the vehicle data sequences in the range [-1s, +1s] around the middle camera frame. Exhaustive annotations are provided for various autonomous driving tasks in [GeoJSON](https://geojson.org/) format for the middle frames of the sequences, allowing multi-task learning.
